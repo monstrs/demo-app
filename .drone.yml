@@ -1,0 +1,5 @@
+image: monstrs/doubledocker
+script:
+  - /etc/init.d/docker start && sleep 1
+  - docker build -t monstrs/test-app:${DRONE_BRANCH} .
+  - docker push monstrs/test-app
