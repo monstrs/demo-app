@@ -3,3 +3,9 @@ script:
   - /etc/init.d/docker start && sleep 1
   - docker build -t monstrs/test-app:${DRONE_BRANCH} .
   - docker push monstrs/test-app
+notify:
+  webhook:
+    urls:
+      - "http://ckube-api-server.staging.monstrs.ru/api/hooks/drone/test-app"
+    on_success: true
+    on_failure: false
